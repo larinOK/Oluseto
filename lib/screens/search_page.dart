@@ -8,22 +8,22 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:meme_cloud/database.dart';
-import 'package:meme_cloud/tag_pics.dart';
-import 'package:meme_cloud/user.dart';
+import 'package:meme_cloud/services/database.dart';
+import 'package:meme_cloud/screens/tag_pics.dart';
+import 'package:meme_cloud/models/user.dart';
 
 import 'package:animated_search_bar/animated_search_bar.dart';
 
 import 'package:provider/provider.dart';
 
-import 'auth_function.dart';
+import '../services/auth_function.dart';
 import 'display.dart';
-import 'firebase_collection.dart';
-import 'global_colours.dart';
+import '../firebase_collection.dart';
+import '../global_colours.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-import 'photo_item.dart';
-import 'tile.dart';
+import '../models/photo_item.dart';
+import '../tile.dart';
 
 class SearchPage extends StatefulWidget {
   final FirebaseCollection firebaseCollection;

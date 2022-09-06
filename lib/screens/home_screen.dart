@@ -3,17 +3,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:meme_cloud/auth_function.dart';
-import 'package:meme_cloud/database.dart';
-import 'package:meme_cloud/display.dart';
-import 'package:meme_cloud/photo_item.dart';
-import 'package:meme_cloud/upload.dart';
+import 'package:meme_cloud/services/auth_function.dart';
+import 'package:meme_cloud/services/database.dart';
+import 'package:meme_cloud/screens/display.dart';
+import 'package:meme_cloud/models/photo_item.dart';
+import 'package:meme_cloud/screens/upload.dart';
 
-import 'firebase_collection.dart';
+import '../firebase_collection.dart';
 import 'dart:math';
 
 import 'search_page.dart';
-import 'tile.dart';
+import '../tile.dart';
 
 class HomeScreen extends StatefulWidget {
   final FirebaseCollection firebaseCollection;

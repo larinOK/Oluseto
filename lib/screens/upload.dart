@@ -7,15 +7,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:meme_cloud/auth_function.dart';
-import 'package:meme_cloud/database.dart';
+import 'package:meme_cloud/services/auth_function.dart';
+import 'package:meme_cloud/services/database.dart';
 import 'package:meme_cloud/firebase_collection.dart';
-import 'package:meme_cloud/home_screen.dart';
-import 'package:meme_cloud/photo_item.dart';
+import 'package:meme_cloud/screens/home_screen.dart';
+import 'package:meme_cloud/models/photo_item.dart';
 import 'package:meme_cloud/search_card.dart';
-import 'package:meme_cloud/storage.dart';
+import 'package:meme_cloud/services/storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:meme_cloud/user.dart';
+import 'package:meme_cloud/models/user.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class ImPred extends StatefulWidget {

@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:meme_cloud/firebase_collection.dart';
-import 'package:meme_cloud/photo_item.dart';
+import 'package:meme_cloud/models/photo_item.dart';
 import 'package:path_provider/path_provider.dart';
 
 class Storage {

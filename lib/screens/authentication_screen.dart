@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:meme_cloud/firebase_collection.dart';
-import 'package:meme_cloud/login_screen.dart';
-import 'package:meme_cloud/signup_screen.dart';
+import 'package:meme_cloud/screens/login_screen.dart';
+import 'package:meme_cloud/screens/signup_screen.dart';
 
 class AuthenticationScreen extends StatefulWidget {
   final FirebaseCollection firebaseCollection;

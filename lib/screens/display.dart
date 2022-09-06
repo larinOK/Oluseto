@@ -5,14 +5,14 @@ import 'dart:io' as io;
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:meme_cloud/auth_function.dart';
-import 'package:meme_cloud/database.dart';
+import 'package:meme_cloud/services/auth_function.dart';
+import 'package:meme_cloud/services/database.dart';
 import 'package:meme_cloud/firebase_collection.dart';
 
 import 'package:meme_cloud/loading.dart';
-import 'package:meme_cloud/photo_item.dart';
-import 'package:meme_cloud/storage.dart';
-import 'package:meme_cloud/tag_pics.dart';
+import 'package:meme_cloud/models/photo_item.dart';
+import 'package:meme_cloud/services/storage.dart';
+import 'package:meme_cloud/screens/tag_pics.dart';
 
 import 'package:share_plus/share_plus.dart';
 import 'package:http/http.dart' as http;

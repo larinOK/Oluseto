@@ -3,12 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:meme_cloud/auth_function.dart';
+import 'package:meme_cloud/services/auth_function.dart';
 import 'package:meme_cloud/firebase_collection.dart';
 import 'package:meme_cloud/firebase_options.dart';
-import 'package:meme_cloud/home_screen.dart';
-import 'package:meme_cloud/upload.dart';
-import 'package:meme_cloud/user.dart';
+import 'package:meme_cloud/screens/home_screen.dart';
+import 'package:meme_cloud/screens/upload.dart';
+import 'package:meme_cloud/models/user.dart';
 import 'package:meme_cloud/wrapper.dart';
 import 'package:provider/provider.dart';
 

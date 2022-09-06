@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meme_cloud/firebase_collection.dart';
-import 'package:meme_cloud/photo_item.dart';
-import 'package:meme_cloud/user.dart';
+import 'package:meme_cloud/models/photo_item.dart';
+import 'package:meme_cloud/models/user.dart';
 
 class DatabaseService {
   final String uid;

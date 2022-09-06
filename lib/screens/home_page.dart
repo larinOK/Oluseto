@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:meme_cloud/home_screen.dart';
-import 'package:meme_cloud/search_page.dart';
-import 'package:meme_cloud/upload.dart';
-import 'package:meme_cloud/view_tags.dart';
+import 'package:meme_cloud/screens/home_screen.dart';
+import 'package:meme_cloud/screens/search_page.dart';
+import 'package:meme_cloud/screens/upload.dart';
+import 'package:meme_cloud/screens/view_tags.dart';
 //import 'package:game_demo/services/theme.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'firebase_collection.dart';
+import '../firebase_collection.dart';
 import 'package:provider/provider.dart';
 //import 'user_profile.dart';
 

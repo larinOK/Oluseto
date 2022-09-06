@@ -9,21 +9,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:meme_cloud/auth_function.dart';
-import 'package:meme_cloud/database.dart';
-import 'package:meme_cloud/display.dart';
-import 'package:meme_cloud/photo_item.dart';
+import 'package:meme_cloud/services/auth_function.dart';
+import 'package:meme_cloud/services/database.dart';
+import 'package:meme_cloud/screens/display.dart';
+import 'package:meme_cloud/models/photo_item.dart';
 import 'package:meme_cloud/pop_up_menu.dart';
-import 'package:meme_cloud/storage.dart';
-import 'package:meme_cloud/view_tags.dart';
+import 'package:meme_cloud/services/storage.dart';
+import 'package:meme_cloud/screens/view_tags.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'firebase_collection.dart';
+import '../firebase_collection.dart';
 import 'dart:math';
 
 import 'home_screen.dart';
-import 'tile.dart';
+import '../tile.dart';
 
 class TagPictures extends StatefulWidget {
   final FirebaseCollection firebaseCollection;

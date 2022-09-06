@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'photo_item.dart';
+import 'models/photo_item.dart';
 
 class Tile extends StatelessWidget {
   const Tile({
