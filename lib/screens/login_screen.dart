@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meme_cloud/services/auth_function.dart';
 import 'package:meme_cloud/firebase_collection.dart';
-import 'package:meme_cloud/formInputWidget.dart';
+import 'package:meme_cloud/custom_widgets/formInputWidget.dart';
 import 'package:meme_cloud/global_colours.dart';
 import 'package:meme_cloud/loading.dart';
 
