@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
       HomeScreen(
         firebaseCollection: firebaseCollection,
       ),
-      ImPred(firebaseCollection: firebaseCollection),
+      UploadPhoto(firebaseCollection: firebaseCollection),
       SearchPage(firebaseCollection: firebaseCollection),
       TagPage(firebaseCollection: firebaseCollection)
 

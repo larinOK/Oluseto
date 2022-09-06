@@ -80,7 +80,7 @@ class TagPicturesState extends State<TagPictures> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => RouteTwo(
+                        builder: (context) => PhotoPage(
                               firebaseCollection: firebaseCollection,
                               item: element,
                             )));
@@ -126,7 +126,7 @@ class TagPicturesState extends State<TagPictures> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => RouteTwo(
+                          builder: (context) => PhotoPage(
                                 firebaseCollection: firebaseCollection,
                                 item: element,
                               )));
@@ -570,28 +570,5 @@ class TagPicturesState extends State<TagPictures> {
       }
     });
     //build(context);
-  }
-
-  Widget _makeCategoryContainer(String title, int id) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          //this._activeCategory = id;
-        });
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 7.5, horizontal: 15.0),
-        margin: EdgeInsets.symmetric(horizontal: 5.0),
-        child: Text(title,
-            style: TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.w500,
-                color: Colors.black)),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-          color: Colors.grey[200],
-        ),
-      ),
-    );
   }
 }

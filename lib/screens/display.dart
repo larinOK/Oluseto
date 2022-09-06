@@ -18,142 +18,15 @@ import 'package:share_plus/share_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
-class RouteOne extends StatelessWidget {
-  final FirebaseCollection firebaseCollection;
-  late User? user;
-  late AuthFunction _auth;
-  List<PhotoItem> _items = [];
-  RouteOne({required this.firebaseCollection}) {
-    _auth = AuthFunction(firebaseCollection: firebaseCollection);
-    user = firebaseCollection.firebaseAuth.currentUser;
-  }
+import '../search_card.dart';
 
-  //        await DatabaseService(uid: user!.uid, firebaseCollection: firebaseCollection)
-  //             .getUserPosts();
-  //     [
-  //   PhotoItem(
-  //       "https://images.pexels.com/photos/1772973/pexels-photo-1772973.png?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-  //       ["Stephan Seeber"]),
-
-  @override
-  Widget build(BuildContext context) {
-    // List<PhotoItem> _items =
-    //     DatabaseService(uid: user!.uid, firebaseCollection: firebaseCollection)
-    //         .getUserPosts();
-
-    // _items =
-    DatabaseService(uid: user!.uid, firebaseCollection: firebaseCollection)
-        .getUserPosts()
-        .then((value) => _items = value);
-
-    loadPhotos() async {
-      _items = await DatabaseService(
-              uid: user!.uid, firebaseCollection: firebaseCollection)
-          .getUserPosts();
-    }
-
-    //loadPhotos();
-
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Screen one ☝️'),
-        ),
-        body: FutureBuilder(
-            future: DatabaseService(
-                    uid: user!.uid, firebaseCollection: firebaseCollection)
-                .getUserPosts(),
-            builder: ((context, snapshot) {
-              if (snapshot.hasData) {
-                return GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 5,
-                      mainAxisSpacing: 5,
-                      crossAxisCount: 3,
-                    ),
-                    itemBuilder: (context, index) {
-                      return new GestureDetector(
-                        onTap: () async {
-                          //List<PhotoItem> jacl = await DatabaseService(
-                          //      uid: user!.uid,
-                          //        firebaseCollection: firebaseCollection)
-                          //    .getUserPosts();
-                          //print(jacl.length);
-
-                          //_items = jacl;
-
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => RouteTwo(
-                          //         firebaseCollection: firebaseCollection,
-                          //         image: _items[0].image,
-                          //         tags: _items[0].tags),
-                          //   ),
-                          // );
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(_items[0].image),
-                            ),
-                          ),
-                        ),
-                      );
-                    });
-              } else {
-                return Loading();
-              }
-            }))
-
-        // GridView.builder(
-        //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //     crossAxisSpacing: 5,
-        //     mainAxisSpacing: 5,
-        //     crossAxisCount: 3,
-        //   ),
-        //   itemCount: _items.length,
-        //   itemBuilder: (context, index) {
-        //     return new GestureDetector(
-        //       onTap: () async {
-        //         print("2172022204326" "-" "vEJJzyIgZ9T3M8ukbZQtH5dtAli2");
-        //         List<PhotoItem> jacl = await DatabaseService(
-        //                 uid: user!.uid, firebaseCollection: firebaseCollection)
-        //             .getUserPosts();
-        //         print(jacl.length);
-
-        //         _items = jacl;
-
-        //         Navigator.push(
-        //           context,
-        //           MaterialPageRoute(
-        //             builder: (context) =>
-        //                 RouteTwo(image: _items[0].image, tags: _items[0].tags),
-        //           ),
-        //         );
-        //       },
-        //       child: Container(
-        //         decoration: BoxDecoration(
-        //           image: DecorationImage(
-        //             fit: BoxFit.cover,
-        //             image: NetworkImage(_items[index].image),
-        //           ),
-        //         ),
-        //       ),
-        //     );
-        //   },
-        // ),
-        );
-  }
-}
-
-class RouteTwo extends StatefulWidget {
+class PhotoPage extends StatefulWidget {
   // final String image;
   // final List<dynamic> tags;
   final FirebaseCollection firebaseCollection;
   final PhotoItem item;
 
-  RouteTwo({
+  PhotoPage({
     Key? key,
     required this.firebaseCollection,
     required this.item,
@@ -162,17 +35,17 @@ class RouteTwo extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<RouteTwo> createState() =>
-      _RouteTwoState(firebaseCollection: firebaseCollection, item: item);
+  State<PhotoPage> createState() =>
+      _PhotoPageState(firebaseCollection: firebaseCollection, item: item);
 }
 
-class _RouteTwoState extends State<RouteTwo> {
+class _PhotoPageState extends State<PhotoPage> {
   late User? user;
   late AuthFunction _auth;
   bool edit = false;
   final PhotoItem item;
   final FirebaseCollection firebaseCollection;
-  _RouteTwoState({required this.firebaseCollection, required this.item}) {
+  _PhotoPageState({required this.firebaseCollection, required this.item}) {
     _auth = AuthFunction(firebaseCollection: firebaseCollection);
     user = firebaseCollection.firebaseAuth.currentUser;
   }
@@ -291,7 +164,7 @@ class _RouteTwoState extends State<RouteTwo> {
     );
   }
 
-  Widget _makeCategoryContainer(String title) {
+  Widget makeTagDisplayWidget(String title) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -321,45 +194,8 @@ class _RouteTwoState extends State<RouteTwo> {
   List<Widget> buildTagContainers(List<dynamic> tags) {
     List<Widget> containers = [];
     for (var item in tags) {
-      containers.add(_makeCategoryContainer(item.toString()));
+      containers.add(makeTagDisplayWidget(item.toString()));
     }
     return containers;
-  }
-}
-
-class SearchCard extends StatelessWidget {
-  String title;
-  void Function()? onPressed;
-
-  SearchCard(this.title, this.onPressed);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: (() {}),
-        child: Container(
-          height: 40.0,
-          padding: EdgeInsets.symmetric(vertical: 3.0, horizontal: 7.0),
-          margin: EdgeInsets.symmetric(horizontal: 5.0),
-          child: Row(
-            children: [
-              Text(title,
-                  style: TextStyle(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black)),
-              IconButton(
-                  onPressed: onPressed,
-                  icon: Icon(
-                    Icons.cancel,
-                    size: 20.0,
-                  ))
-            ],
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(15.0)),
-            color: Colors.grey[200],
-          ),
-        ));
   }
 }

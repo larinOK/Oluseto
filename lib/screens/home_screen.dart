@@ -12,6 +12,7 @@ import 'package:meme_cloud/screens/upload.dart';
 import '../firebase_collection.dart';
 import 'dart:math';
 
+import '../tag_search.dart';
 import 'search_page.dart';
 import '../tile.dart';
 
@@ -68,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => RouteTwo(
+                      builder: (context) => PhotoPage(
                             firebaseCollection: firebaseCollection,
                             item: item,
                           )));
@@ -187,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => ImPred(
+                                              builder: (context) => UploadPhoto(
                                                   firebaseCollection:
                                                       firebaseCollection)));
                                     },
@@ -204,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => ImPred(
+                                              builder: (context) => UploadPhoto(
                                                   firebaseCollection:
                                                       firebaseCollection)));
                                     },
@@ -223,7 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) => ImPred(
+                                                builder: (context) => UploadPhoto(
                                                     firebaseCollection:
                                                         firebaseCollection)));
                                       },
@@ -327,29 +328,5 @@ class _HomeScreenState extends State<HomeScreen> {
                 ])),
           ),
         ));
-  }
-
-  /// make category container widget.
-  Widget _makeCategoryContainer(String title, int id) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          this._activeCategory = id;
-        });
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 7.5, horizontal: 15.0),
-        margin: EdgeInsets.symmetric(horizontal: 5.0),
-        child: Text(title,
-            style: TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.w500,
-                color: (id == _activeCategory) ? Colors.white : Colors.black)),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-          color: (id == _activeCategory) ? Colors.grey[700] : Colors.grey[200],
-        ),
-      ),
-    );
   }
 }
