@@ -13,7 +13,7 @@ import 'package:meme_cloud/services/auth_function.dart';
 import 'package:meme_cloud/services/database.dart';
 import 'package:meme_cloud/screens/display.dart';
 import 'package:meme_cloud/models/photo_item.dart';
-import 'package:meme_cloud/pop_up_menu.dart';
+import 'package:meme_cloud/custom_widgets/pop_up_menu.dart';
 import 'package:meme_cloud/services/storage.dart';
 import 'package:meme_cloud/screens/view_tags.dart';
 import 'package:share_plus/share_plus.dart';
@@ -23,7 +23,7 @@ import '../firebase_collection.dart';
 import 'dart:math';
 
 import 'home_screen.dart';
-import '../tile.dart';
+import '../custom_widgets/tile.dart';
 
 class TagPictures extends StatefulWidget {
   final FirebaseCollection firebaseCollection;

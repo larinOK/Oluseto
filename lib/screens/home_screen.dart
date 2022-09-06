@@ -12,9 +12,9 @@ import 'package:meme_cloud/screens/upload.dart';
 import '../firebase_collection.dart';
 import 'dart:math';
 
-import '../tag_search.dart';
+import '../custom_widgets/tag_search.dart';
 import 'search_page.dart';
-import '../tile.dart';
+import '../custom_widgets/tile.dart';
 
 class HomeScreen extends StatefulWidget {
   final FirebaseCollection firebaseCollection;

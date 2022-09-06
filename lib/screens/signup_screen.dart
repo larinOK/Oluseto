@@ -68,6 +68,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           suffix: IconButton(
             icon: Icon(
                 _passwordVisible ? Icons.visibility : Icons.visibility_off),
+            iconSize: 12.0,
             onPressed: () {
               setState(() {
                 _passwordVisible = !_passwordVisible;
@@ -90,6 +91,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             icon: Icon(_confirmPasswordVisible
                 ? Icons.visibility
                 : Icons.visibility_off),
+            iconSize: 12.0,
             onPressed: () {
               setState(() {
                 _confirmPasswordVisible = !_confirmPasswordVisible;

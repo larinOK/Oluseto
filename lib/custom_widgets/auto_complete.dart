@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'firebase_collection.dart';
-import 'services/auth_function.dart';
-import 'services/database.dart';
+import '../firebase_collection.dart';
+import '../services/auth_function.dart';
+import '../services/database.dart';
 
 class AutocompleteTextField extends StatelessWidget {
   List<String> options = [];

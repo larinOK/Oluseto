@@ -5,9 +5,9 @@ import 'package:meme_cloud/services/auth_function.dart';
 
 import '../firebase_collection.dart';
 import '../models/photo_item.dart';
-import '../search_card.dart';
+import '../custom_widgets/search_card.dart';
 import '../services/database.dart';
-import '../tile.dart';
+import '../custom_widgets/tile.dart';
 import 'display.dart';
 
 class ResultsPage extends StatefulWidget {

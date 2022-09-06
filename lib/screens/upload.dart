@@ -12,13 +12,13 @@ import 'package:meme_cloud/services/database.dart';
 import 'package:meme_cloud/firebase_collection.dart';
 import 'package:meme_cloud/screens/home_screen.dart';
 import 'package:meme_cloud/models/photo_item.dart';
-import 'package:meme_cloud/search_card.dart';
+import 'package:meme_cloud/custom_widgets/search_card.dart';
 import 'package:meme_cloud/services/storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meme_cloud/models/user.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-import '../auto_complete.dart';
+import '../custom_widgets/auto_complete.dart';
 
 class UploadPhoto extends StatefulWidget {
   @override

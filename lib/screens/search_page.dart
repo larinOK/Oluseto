@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:meme_cloud/tag_search.dart';
+import 'package:meme_cloud/custom_widgets/tag_search.dart';
 
 import '../services/auth_function.dart';
 

@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'firebase_collection.dart';
-import 'screens/results_page.dart';
-import 'screens/search_page.dart';
+import '../firebase_collection.dart';
+import '../screens/results_page.dart';
+import '../screens/search_page.dart';
 import 'search_card.dart';
-import 'services/auth_function.dart';
-import 'services/database.dart';
+import '../services/auth_function.dart';
+import '../services/database.dart';
 
 class TagSearch extends SearchDelegate {
   List<dynamic> tagList;

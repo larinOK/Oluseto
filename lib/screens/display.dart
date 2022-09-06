@@ -18,7 +18,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
-import '../search_card.dart';
+import '../custom_widgets/search_card.dart';
 
 class PhotoPage extends StatefulWidget {
   // final String image;
