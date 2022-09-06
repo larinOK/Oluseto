@@ -121,7 +121,7 @@ class ImPredState extends State<ImPred> {
     //   DatabaseService(uid: user!.uid, firebaseCollection: firebaseCollection)
     //       .filterPhotos(tags)
     //       .then((value) => print(value));
-    // }
+    //
 
     for (var tag in tentativeTags) {
       cards.add(SearchCard(tag.toString(), () async {
