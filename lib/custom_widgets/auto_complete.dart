@@ -36,7 +36,6 @@ class AutocompleteTextField extends StatelessWidget {
       options.add(element.toString());
     });
     options.sort((a, b) => a.compareTo(b));
-    print(options);
   }
 
   // static const List<String> _kOptions = <String>[
@@ -57,7 +56,6 @@ class AutocompleteTextField extends StatelessWidget {
         if (textEditingValue.text == '') {
           return options;
         } else {
-          print(options.length);
           //options.add(textEditingValue.text.toString());
           return options.where((String option) {
             return option.contains(textEditingValue.text.toLowerCase());
@@ -90,9 +88,9 @@ class AutocompleteTextField extends StatelessWidget {
       fieldViewBuilder: (context, controller, focusNode, onEditingComplete) {
         return TextField(
           focusNode: focusNode,
-          autofocus: true,
+          autofocus: false,
           controller: controller,
-          textInputAction: TextInputAction.continueAction,
+          textInputAction: TextInputAction.unspecified,
           keyboardType: TextInputType.text,
           decoration: InputDecoration(
               hintText: "Add Tags",

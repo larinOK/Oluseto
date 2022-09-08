@@ -98,7 +98,7 @@ class UploadPhotoState extends State<UploadPhoto> {
 
     if (images == null) return null;
 
-    if (images!.isNotEmpty) {
+    if (images.isNotEmpty) {
       setState(() {
         _isLoading = false;
         picked = true;
@@ -245,7 +245,7 @@ class UploadPhotoState extends State<UploadPhoto> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.orange,
         title: Text("Upload"),
         leading: picked
             ? IconButton(
@@ -279,7 +279,7 @@ class UploadPhotoState extends State<UploadPhoto> {
                   style: TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                      color: Colors.orange),
                 ),
               ),
               SizedBox(height: 20.0),
@@ -372,7 +372,6 @@ class UploadPhotoState extends State<UploadPhoto> {
                         //           borderRadius: BorderRadius.circular(10))),
                         // ),
                         AutocompleteTextField((p0) {
-                          print(p0);
                           setState(() {
                             tentativeTags.add(p0);
                           });
@@ -457,7 +456,7 @@ class UploadPhotoState extends State<UploadPhoto> {
                           },
                           style: ButtonStyle(
                             backgroundColor:
-                                MaterialStateProperty.all(Colors.black),
+                                MaterialStateProperty.all(Colors.orangeAccent),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
@@ -483,7 +482,7 @@ class UploadPhotoState extends State<UploadPhoto> {
                               },
                               style: ButtonStyle(
                                 backgroundColor:
-                                    MaterialStateProperty.all(Colors.black),
+                                    MaterialStateProperty.all(Colors.orange),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -506,7 +505,7 @@ class UploadPhotoState extends State<UploadPhoto> {
                               },
                               style: ButtonStyle(
                                 backgroundColor:
-                                    MaterialStateProperty.all(Colors.black),
+                                    MaterialStateProperty.all(Colors.orange),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(

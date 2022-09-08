@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:meme_cloud/custom_widgets/image_card.dart';
+import 'package:meme_cloud/custom_widgets/images_loading.dart';
 import 'package:meme_cloud/custom_widgets/tag_carousel.dart';
+import 'package:meme_cloud/loading.dart';
 import 'package:meme_cloud/services/auth_function.dart';
 import 'package:meme_cloud/services/database.dart';
 import 'package:meme_cloud/screens/display.dart';
@@ -175,25 +177,30 @@ class _HomeScreenState extends State<HomeScreen> {
                           .getUserPosts(),
                       builder: (context, snapshot) {
                         if (!snapshot.hasData) {
-                          return Column(
-                            children: [
-                              Center(
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => UploadPhoto(
-                                                  firebaseCollection:
-                                                      firebaseCollection)));
-                                    },
-                                    child: Text("Add Pictures")),
-                              )
-                            ],
-                          );
+                          return ImagesLoading();
+                          // Column(
+                          //   children: [
+                          //     Center(
+                          //       child: ElevatedButton(
+                          //           onPressed: () {
+                          //             Navigator.push(
+                          //                 context,
+                          //                 MaterialPageRoute(
+                          //                     builder: (context) => UploadPhoto(
+                          //                         firebaseCollection:
+                          //                             firebaseCollection)));
+                          //           },
+                          //           child: Text("Add Pictures")),
+                          //     )
+                          //   ],
+                          // );
                         } else if (snapshot.data == []) {
                           return Column(
                             children: [
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.5,
+                              ),
                               Center(
                                 child: ElevatedButton(
                                     onPressed: () {
@@ -213,6 +220,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           if (data == []) {
                             return Column(
                               children: [
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.5,
+                                ),
                                 Center(
                                   child: ElevatedButton(
                                       onPressed: () {
@@ -227,13 +238,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                 )
                               ],
                             );
-                          } else {
+                          } else if (snapshot.connectionState ==
+                              ConnectionState.done) {
                             return StaggeredGrid.count(
                               crossAxisCount: 2,
                               mainAxisSpacing: 5,
                               crossAxisSpacing: 5,
                               children: loadTiles(data),
                             );
+                          } else {
+                            return StaggeredGrid.count(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 5,
+                                crossAxisSpacing: 5,
+                                children: [1, 2, 3, 4, 5, 6, 7, 8]
+                                    .map((e) => ImagesLoading())
+                                    .toList());
                           }
                         }
                       })

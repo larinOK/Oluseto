@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:meme_cloud/custom_widgets/images_loading.dart';
+import 'package:meme_cloud/loading.dart';
 import 'package:meme_cloud/models/photo_item.dart';
 import 'package:meme_cloud/services/database.dart';
 import 'package:meme_cloud/screens/tag_pics.dart';
 import 'package:meme_cloud/models/user.dart';
+import 'package:meme_cloud/splash.dart';
 
 import 'package:provider/provider.dart';
 
@@ -92,7 +95,7 @@ class TagPageState extends State<TagPage> {
                     //           const SizedBox(height: 20.0)
                     //         ]));
                   } else {
-                    return Text("nada");
+                    return ImagesLoading();
                   }
                 })));
   }

@@ -12,7 +12,7 @@ class Loading extends StatelessWidget {
       color: Colors.white,
       child: Center(
         child: SpinKitThreeBounce(
-          color: globalColours.baseColour,
+          color: Colors.deepOrange,
           size: 50.0,
         ),
       ),

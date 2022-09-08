@@ -1,12 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:meme_cloud/services/database.dart';
 import 'package:meme_cloud/firebase_collection.dart';
 import 'package:meme_cloud/models/user.dart';
 
 class AuthFunction {
   final FirebaseCollection firebaseCollection;
+  final String successMessage = "Success";
 
   AuthFunction({required this.firebaseCollection});
 
@@ -52,17 +54,18 @@ class AuthFunction {
     }
   }
 
-  Future login(String emailInput, String passwordInput) async {
+  Future<String> login(String emailInput, String passwordInput) async {
     try {
       UserCredential credential = await firebaseCollection.firebaseAuth
           .signInWithEmailAndPassword(
               email: emailInput, password: passwordInput);
 
       AppUser? currentUser = appUserFromUser(credential.user);
-      return currentUser;
+
+      return successMessage;
     } catch (e) {
       print(e.toString());
-      return e;
+      return e.toString();
     }
   }
 

@@ -63,7 +63,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       decoration: InputDecoration(
           prefixIcon: Icon(Icons.password),
           hintText: "Password",
-          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+          contentPadding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
           suffix: IconButton(
             icon: Icon(
@@ -84,7 +84,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       obscureText: !_confirmPasswordVisible,
       decoration: InputDecoration(
           hintText: "Password",
-          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+          contentPadding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
           prefixIcon: Icon(Icons.password),
           suffix: IconButton(
@@ -118,6 +118,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           fontWeight: FontWeight.bold,
         ),
       ),
+      style: ElevatedButton.styleFrom(primary: Colors.orange),
     );
 
     return loading
@@ -135,17 +136,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                            height: 120,
+                            height: 80,
                             child: Text(
-                              "MEMES",
+                              "OLUSETO",
                               style: TextStyle(
                                   fontFamily: "TypoRound",
-                                  fontSize: 80,
-                                  color: globalColours.baseColour,
+                                  fontSize: 60,
+                                  color: Colors.orange,
                                   fontWeight: FontWeight.w900),
                             )),
-                        Text("MEMES",
-                            style: TextStyle(color: Colors.red, fontSize: 16)),
                         SizedBox(height: 25),
                         nameField,
                         SizedBox(height: 25),
@@ -159,7 +158,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(height: 15),
                         TextButton(
                             key: Key("log-in-button"),
-                            child: Text("Already have an account? Log in"),
+                            child: Text(
+                              "Already have an account? Log in",
+                              style: TextStyle(color: Colors.orange),
+                            ),
                             onPressed: (() {
                               // Navigator.push(
                               //     context,

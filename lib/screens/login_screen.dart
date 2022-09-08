@@ -67,13 +67,19 @@ class _LoginScreenState extends State<LoginScreen> {
           setState(() {
             loading = true;
           });
-          var player = await _auth.login(
+          String message = await _auth.login(
               _emailController.text, _passwordController.text);
-          if (player == null) {
+
+          if (message != _auth.successMessage) {
+            print(message + "jj");
             setState(() {
-              error = "Invalid login credentials, please try again";
+              //error = "Login unsuccessful! Please check email or password";
               loading = false;
             });
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content:
+                    Text("Login unsuccessful! Please check email or password"),
+                duration: Duration(milliseconds: 1500)));
           }
         }
       },
@@ -86,7 +92,8 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
       style: ElevatedButton.styleFrom(
-          fixedSize: Size(MediaQuery.of(context).size.width, 50)),
+          fixedSize: Size(MediaQuery.of(context).size.width, 50),
+          primary: Colors.orange),
     );
 
     return loading
@@ -110,12 +117,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: TextStyle(
                                   fontFamily: "TypoRound",
                                   fontSize: 80,
-                                  color: globalColours.baseColour,
+                                  color: Colors.orange,
                                   fontWeight: FontWeight.w900),
                             )),
-                        Text(error,
-                            style: TextStyle(color: Colors.red, fontSize: 16),
-                            key: Key("invalid-email")),
                         SizedBox(height: 25),
                         emailField,
                         SizedBox(height: 25),
@@ -124,7 +128,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         loginButton,
                         SizedBox(height: 15),
                         TextButton(
-                            child: Text("Don't have an account? Sign up"),
+                            child: Text(
+                              "Don't have an account? Sign up",
+                              style: TextStyle(color: Colors.orange),
+                            ),
                             onPressed: (() {
                               widget.toggle();
                             }),

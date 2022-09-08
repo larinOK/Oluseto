@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meme_cloud/screens/home_screen.dart';
 import 'package:meme_cloud/screens/search_page.dart';
+import 'package:meme_cloud/screens/settings_page.dart';
 import 'package:meme_cloud/screens/upload.dart';
 import 'package:meme_cloud/screens/view_tags.dart';
 //import 'package:game_demo/services/theme.dart';
@@ -67,10 +68,8 @@ class _HomePageState extends State<HomePage> {
         firebaseCollection: firebaseCollection,
       ),
       UploadPhoto(firebaseCollection: firebaseCollection),
-      SearchPage(firebaseCollection: firebaseCollection),
-      TagPage(firebaseCollection: firebaseCollection)
-
-      //ProfilePage(firebaseCollection: firebaseCollection)
+      TagPage(firebaseCollection: firebaseCollection),
+      SettingsPage(firebaseCollection: firebaseCollection)
     ];
   }
 
@@ -87,13 +86,13 @@ class _HomePageState extends State<HomePage> {
           activeColorPrimary: globalColours.baseColour,
           inactiveColorPrimary: Colors.grey),
       PersistentBottomNavBarItem(
-          icon: Icon(Icons.search),
-          title: "Search",
+          icon: Icon(Icons.label, key: Key("profile-link")),
+          title: "Tags",
           activeColorPrimary: globalColours.baseColour,
           inactiveColorPrimary: Colors.grey),
       PersistentBottomNavBarItem(
-          icon: Icon(Icons.label, key: Key("profile-link")),
-          title: "Tags",
+          icon: Icon(Icons.settings, key: Key("profile-link")),
+          title: "Settings",
           activeColorPrimary: globalColours.baseColour,
           inactiveColorPrimary: Colors.grey),
     ];

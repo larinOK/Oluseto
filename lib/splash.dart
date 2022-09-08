@@ -43,7 +43,7 @@ class _SplashState extends State<Splash> {
                   colors: [globalColours.baseColour, Colors.white])),
           child: Center(
               child: Image.asset(
-            'assets/images/login-screen-logo.png',
+            'assets/images/icon.png',
             width: width * 0.70,
           ))),
     );
