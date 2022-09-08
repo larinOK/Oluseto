@@ -3,6 +3,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:meme_cloud/custom_widgets/image_card.dart';
+import 'package:meme_cloud/custom_widgets/tag_carousel.dart';
 import 'package:meme_cloud/services/auth_function.dart';
 import 'package:meme_cloud/services/database.dart';
 import 'package:meme_cloud/screens/display.dart';
@@ -45,21 +47,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<PhotoItem> _items = [
-      // PhotoItem(
-      //     "https://images.pexels.com/photos/1772973/pexels-photo-1772973.png?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-      //     ["Stephan Seeber"]),
-      // PhotoItem(
-      //     "https://images.pexels.com/photos/1758531/pexels-photo-1758531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-      //     ["Liam Gant"]),
-    ];
-
     loadTiles(List<PhotoItem> photos) {
-      var random = Random();
-      int min = 2;
-      int max = 5;
-      int result1 = min + random.nextInt(max - min);
-      int result2 = min + random.nextInt(max - min);
+      // var random = Random();
+      // int min = 2;
+      // int max = 5;
+
       // print(result1);
       // print(result2);
       List<Widget> babyList = [];
@@ -75,13 +67,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           )));
             },
             child: StaggeredGridTile.count(
-              crossAxisCellCount: min + random.nextInt(max - min),
-              mainAxisCellCount: min + random.nextInt(max - min),
-              child: Tile(
-                index: babyList.length,
-                photo: item,
-              ),
-            )));
+                crossAxisCellCount: 3, //min + random.nextInt(max - min),
+                mainAxisCellCount: 3, //min + random.nextInt(max - min),
+                child: ImageCard(item: item)
+                // Tile(
+                //   index: babyList.length,
+                //   photo: item,
+                // ),
+                )));
       }
 
       tileList = babyList;
@@ -109,7 +102,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.orange,
+          title: Text("OLUSETO"),
           actions: [
             Padding(
                 padding: EdgeInsets.only(right: 20.0),
@@ -140,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(30.0),
+            padding: EdgeInsets.all(10.0),
             child: SingleChildScrollView(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,6 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontWeight: FontWeight.w700,
                           color: Colors.black)),
                   const SizedBox(height: 10.0),
+                  TagCarouselSlider(firebaseCollection: firebaseCollection),
                   Text('All your uploads.',
                       style: TextStyle(
                           fontSize: 15.0,
@@ -234,9 +229,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             );
                           } else {
                             return StaggeredGrid.count(
-                              crossAxisCount: 4,
-                              mainAxisSpacing: 4,
-                              crossAxisSpacing: 4,
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 5,
+                              crossAxisSpacing: 5,
                               children: loadTiles(data),
                             );
                           }

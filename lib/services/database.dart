@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meme_cloud/firebase_collection.dart';
@@ -279,5 +281,98 @@ class DatabaseService {
     newTagList.add(tag);
 
     collectionOfUserPosts.doc(key).update({"tag": newTagList});
+  }
+
+  Future<List<String>> getMostPopularTags() async {
+    PhotoItem item;
+    Map<String, int> map = {};
+    List<dynamic> usertags = await getUserTags() as List<dynamic>;
+
+    for (var tag in usertags) {
+      List<PhotoItem> photos = [];
+      await collectionOfUserPosts
+          .where("tag", arrayContains: tag.toString())
+          .get()
+          .then((value) => {
+                value.docs.forEach((element) {
+                  Map<String, dynamic> data =
+                      element.data() as Map<String, dynamic>;
+                  item = PhotoItem(data['link'], data['tag'], data['id']);
+                  photos.add(item);
+                }),
+                map[tag.toString()] = photos.length
+              });
+
+      //print(photos.length);
+
+    }
+    List<String> keys = map.keys.toList();
+    keys.sort((a, b) => map[a]!.compareTo(map[b]!.toInt()));
+    print(keys.reversed);
+
+    return keys.reversed.toList().getRange(0, 6).toList();
+  }
+
+  Future<Map<String, PhotoItem>> getRandomPhotoForTags(
+      List<String> tags) async {
+    Map<String, PhotoItem> map = {};
+
+    for (var tag in tags) {
+      List<PhotoItem> photos = [];
+      int intValue;
+      await collectionOfUserPosts
+          .where("tag", arrayContains: tag)
+          .get()
+          .then((value) => {
+                value.docs.forEach((element) {
+                  Map<String, dynamic> data =
+                      element.data() as Map<String, dynamic>;
+
+                  photos.add(PhotoItem(data['link'], data['tag'], data['id']));
+                }),
+                intValue = Random().nextInt(photos.length),
+                map[tag] = photos[intValue]
+              });
+
+      //print(photos.length);
+
+    }
+    return map;
+  }
+
+  Future<Map<String, PhotoItem>> getRandomPhotoForDynamicTags(
+      List<dynamic> tags) async {
+    Map<String, PhotoItem> map = {};
+
+    for (var tag in tags) {
+      List<PhotoItem> photos = [];
+      int intValue;
+      await collectionOfUserPosts
+          .where("tag", arrayContains: tag.toString())
+          .get()
+          .then((value) => {
+                value.docs.forEach((element) {
+                  Map<String, dynamic> data =
+                      element.data() as Map<String, dynamic>;
+
+                  photos.add(PhotoItem(data['link'], data['tag'], data['id']));
+                }),
+                intValue = Random().nextInt(photos.length),
+                map[tag.toString()] = photos[intValue]
+              });
+
+      //print(photos.length);
+
+    }
+    return map;
+  }
+
+  Future<Map<String, PhotoItem>> getCarouselData() async {
+    return getRandomPhotoForTags(await getMostPopularTags());
+  }
+
+  Future<Map<String, PhotoItem>> getTagDisplayData() async {
+    var list = await getUserTags() as List<dynamic>;
+    return getRandomPhotoForDynamicTags(list);
   }
 }

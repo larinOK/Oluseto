@@ -96,7 +96,7 @@ class UploadPhotoState extends State<UploadPhoto> {
     //XFile? image = await picker.pickImage(source: ImageSource.gallery);
     List<XFile>? images = await picker.pickMultiImage();
 
-    //if (image == null) return null;
+    if (images == null) return null;
 
     if (images!.isNotEmpty) {
       setState(() {

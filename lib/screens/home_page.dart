@@ -36,7 +36,8 @@ class _HomePageState extends State<HomePage> {
     //ThemeManager themeManager = Provider.of<ThemeManager>(context, listen: false);
 
     return PersistentTabView(context,
-        backgroundColor: Color.fromRGBO(72, 68, 68, 1),
+        backgroundColor: Colors.brown,
+        //Color.fromRGBO(72, 68, 68, 1),
         screens: _buildScreens(),
         controller: tabController,
         decoration: NavBarDecoration(boxShadow: [

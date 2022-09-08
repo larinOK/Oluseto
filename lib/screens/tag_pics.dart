@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:meme_cloud/custom_widgets/image_card.dart';
 import 'package:meme_cloud/services/auth_function.dart';
 import 'package:meme_cloud/services/database.dart';
 import 'package:meme_cloud/screens/display.dart';
@@ -89,14 +90,19 @@ class TagPicturesState extends State<TagPictures> {
             crossAxisCellCount: 5,
             mainAxisCellCount: 5,
             child: Stack(children: [
-              Tile(
-                index: babyList.length + 1,
-                photo: element,
-                backgroundColor: Colors.black.withOpacity(selectedImages
-                        .any((photo) => photo.uniqueId == element.uniqueId)
-                    ? 1
-                    : 0),
-              ),
+              ImageCard(item: element),
+              // Tile(
+              //     index: babyList.length + 1,
+              //     photo: element,
+              //     backgroundColor: selectedImages
+              //             .any((photo) => photo.uniqueId == element.uniqueId)
+              //         ? Colors.red
+              //         : Colors.blue
+              //     // Colors.black.withOpacity(selectedImages
+              //     //         .any((photo) => photo.uniqueId == element.uniqueId)
+              //     //     ? 1
+              //     //     : 0),
+              //     ),
               Visibility(
                 visible: selectedImages.any((photo) => photo.equals(element)),
                 child: Align(
@@ -285,9 +291,11 @@ class TagPicturesState extends State<TagPictures> {
     //selectedImages.clear();
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.orange,
+        title: Text("OLUSETO"),
         actions: [
           Padding(
-              padding: EdgeInsets.only(right: 20.0),
+              padding: EdgeInsets.all(10.0),
               child: Row(
                 children: selectActivated
                     ? [
@@ -535,9 +543,9 @@ class TagPicturesState extends State<TagPictures> {
                         if (snapshot.hasData) {
                           var data = snapshot.data as List<PhotoItem>;
                           return StaggeredGrid.count(
-                            crossAxisCount: 4,
-                            mainAxisSpacing: 4,
-                            crossAxisSpacing: 4,
+                            crossAxisCount: 3,
+                            mainAxisSpacing: 5,
+                            crossAxisSpacing: 5,
                             children: loadPhotos(data),
                           );
                         } else {

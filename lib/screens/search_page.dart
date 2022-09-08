@@ -50,7 +50,8 @@ class SearchPageState extends State<SearchPage> {
     //print(tagList.length);
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.orangeAccent,
+          title: Text("OLUSETO"),
         ),
         body: Column(children: [
           //IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.search)),

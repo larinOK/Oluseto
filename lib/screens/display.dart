@@ -74,93 +74,96 @@ class _PhotoPageState extends State<PhotoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(' '),
-        backgroundColor: Colors.black,
+        title: Text(' OLUSETO '),
+        backgroundColor: Colors.orange,
       ),
-      body: Column(
-        children: [
-          AspectRatio(
-            aspectRatio: 1,
-            child: Container(
-              width: double.infinity,
-              child: Image(
-                image: NetworkImage(item.image),
+      body: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              AspectRatio(
+                aspectRatio: 1,
+                child: Container(
+                  width: double.infinity,
+                  child: Image(
+                    image: NetworkImage(item.image),
+                  ),
+                ),
               ),
-            ),
-          ),
-          !edit
-              ? Column(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.all(20.0),
-                      child: Center(
-                          child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: buildTagContainers(item.tags),
-                        ),
-                      )
-
-                          // Text(
-                          //   tags.toString(),
-                          //   style: TextStyle(fontSize: 40),
-                          // ),
-                          ),
-                    ),
-                    Row(
+              !edit
+                  ? Column(
                       children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.35,
-                        ),
-                        IconButton(
-                            onPressed: () async {
-                              final urlImage = item.image;
-                              final url = Uri.parse(urlImage);
-                              final response = await http.get(url);
-                              final bytes = response.bodyBytes;
+                        Container(
+                          margin: const EdgeInsets.all(20.0),
+                          child: Center(
+                              child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: buildTagContainers(item.tags),
+                            ),
+                          )
 
-                              final temp = await getTemporaryDirectory();
-                              final path = '${temp.path}/image.jpg';
-                              io.File(path).writeAsBytesSync(bytes);
-                              await Share.shareFiles([path], text: "Test");
-                            },
-                            icon: Icon(Icons.share)),
-                        IconButton(
-                            onPressed: () {
-                              setState(() {
-                                edit = true;
-                              });
-                            },
-                            icon: Icon(Icons.edit))
+                              // Text(
+                              //   tags.toString(),
+                              //   style: TextStyle(fontSize: 40),
+                              // ),
+                              ),
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.35,
+                            ),
+                            IconButton(
+                                onPressed: () async {
+                                  final urlImage = item.image;
+                                  final url = Uri.parse(urlImage);
+                                  final response = await http.get(url);
+                                  final bytes = response.bodyBytes;
+
+                                  final temp = await getTemporaryDirectory();
+                                  final path = '${temp.path}/image.jpg';
+                                  io.File(path).writeAsBytesSync(bytes);
+                                  await Share.shareFiles([path], text: "Test");
+                                },
+                                icon: Icon(Icons.share)),
+                            IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    edit = true;
+                                  });
+                                },
+                                icon: Icon(Icons.edit))
+                          ],
+                        )
                       ],
                     )
-                  ],
-                )
-              : Container(
-                  child: Column(
-                  children: [
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: buildEditCards(),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          edit = false;
-                        });
-                      },
-                      child: Text("Done"),
-                      style: ElevatedButton.styleFrom(primary: Colors.black),
-                    )
-                  ],
-                )),
-        ],
-      ),
+                  : Container(
+                      child: Column(
+                      children: [
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: buildEditCards(),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              edit = false;
+                            });
+                          },
+                          child: Text("Done"),
+                          style:
+                              ElevatedButton.styleFrom(primary: Colors.black),
+                        )
+                      ],
+                    )),
+            ],
+          )),
     );
   }
 
