@@ -84,6 +84,7 @@ class TagPicturesState extends State<TagPictures> {
                         builder: (context) => PhotoPage(
                               firebaseCollection: firebaseCollection,
                               item: element,
+                              //widgetA: widget,
                             )));
               },
         child: StaggeredGridTile.count(
@@ -135,6 +136,7 @@ class TagPicturesState extends State<TagPictures> {
                           builder: (context) => PhotoPage(
                                 firebaseCollection: firebaseCollection,
                                 item: element,
+                                //widgetA: widget,
                               )));
                 },
                 onTap: () {
@@ -389,31 +391,30 @@ class TagPicturesState extends State<TagPictures> {
                                                 onPressed: () async {
                                                   for (PhotoItem photo
                                                       in selectedImages) {
-                                                    // Navigator.push(
-                                                    //     context,
-                                                    //     MaterialPageRoute(
-                                                    //         builder: (context) =>
-                                                    //             TagPage(
-                                                    //                 firebaseCollection:
-                                                    //                     firebaseCollection)));
-                                                    // DatabaseService(
-                                                    //         uid: user!.uid,
-                                                    //         firebaseCollection:
-                                                    //             firebaseCollection)
-                                                    //     .deletePhoto(
-                                                    //         photo.uniqueId);
-                                                    // Storage(
-                                                    //         firebaseCollection:
-                                                    //             firebaseCollection)
-                                                    //     .deletePictureFromAll(
-                                                    //         photo.uniqueId);
-                                                    // Storage(
-                                                    //         firebaseCollection:
-                                                    //             firebaseCollection)
-                                                    //     .deleteFromTags(
-                                                    //         photo.uniqueId,
-                                                    //         photo.tags);
-
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                TagPage(
+                                                                    firebaseCollection:
+                                                                        firebaseCollection)));
+                                                    DatabaseService(
+                                                            uid: user!.uid,
+                                                            firebaseCollection:
+                                                                firebaseCollection)
+                                                        .deletePhoto(
+                                                            photo.uniqueId);
+                                                    Storage(
+                                                            firebaseCollection:
+                                                                firebaseCollection)
+                                                        .deletePictureFromAll(
+                                                            photo.uniqueId);
+                                                    Storage(
+                                                            firebaseCollection:
+                                                                firebaseCollection)
+                                                        .deleteFromTags(
+                                                            photo.uniqueId,
+                                                            photo.tags);
                                                   }
                                                 },
                                                 child: Text("Delete")),

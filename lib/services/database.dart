@@ -49,16 +49,22 @@ class DatabaseService {
     }
   }
 
+  Future updateUserTagList(List<String> tags) async {
+    // List<dynamic> originalTags = await getUserTags() as List<dynamic>;
+    // List<String> originalTagsStrings =
+    //     originalTags.map((e) => e.toString()).toList();
+
+    //tags.removeWhere((element) => originalTags.contains(element));
+
+    return await collectionOfUsers
+        .doc(uid)
+        .set({'tags': tags}, SetOptions(merge: true));
+  }
+
   Future updateFirstLoad(bool firstLoad) async {
     return await collectionOfUsers.doc(uid).set({
       'firstLoad': firstLoad,
     }, SetOptions(merge: true));
-  }
-
-  Future updateUserTagList(List<String> tags) async {
-    return await collectionOfUsers
-        .doc(uid)
-        .set({'tags': tags}, SetOptions(merge: true));
   }
 
   Future updateName(
@@ -271,6 +277,24 @@ class DatabaseService {
     newTagList.removeWhere((element) => element == tag);
 
     collectionOfUserPosts.doc(key).update({"tag": newTagList});
+  }
+
+  Future<void> updatePhotoTagList(String key, List<String> newTags) async {
+    await collectionOfUserPosts.doc(key).update({"tag": newTags});
+
+    List<dynamic> originalTags = await getUserTags() as List<dynamic>;
+    List<String> originalTagsStrings =
+        originalTags.map((e) => e.toString()).toList();
+
+    newTags.forEach((element) {
+      if (!originalTagsStrings.contains(element)) {
+        originalTagsStrings.add(element);
+      }
+    });
+
+    //originalTagsStrings.removeWhere((element) => originalTags.contains(element));
+
+    return updateUserTagList(originalTagsStrings);
   }
 
   addTagToPhoto(String key, String tag) async {

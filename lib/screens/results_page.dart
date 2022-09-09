@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:meme_cloud/custom_widgets/gesture_detector.dart';
 import 'package:meme_cloud/services/auth_function.dart';
 
 import '../firebase_collection.dart';
@@ -61,24 +62,8 @@ class ResultsPageState extends State<ResultsPage> {
 
     List<Widget> babyList = [];
     for (var item in photos) {
-      babyList.add(GestureDetector(
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => PhotoPage(
-                          firebaseCollection: firebaseCollection,
-                          item: item,
-                        )));
-          },
-          child: StaggeredGridTile.count(
-            crossAxisCellCount: 4,
-            mainAxisCellCount: 4,
-            child: Tile(
-              index: babyList.length,
-              photo: item,
-            ),
-          )));
+      babyList.add(GestureDetectorWidget(
+          firebaseCollection: firebaseCollection, item: item));
     }
 
     //tileList = babyList;

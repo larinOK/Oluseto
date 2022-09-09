@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:meme_cloud/custom_widgets/gesture_detector.dart';
 import 'package:meme_cloud/custom_widgets/image_card.dart';
 import 'package:meme_cloud/custom_widgets/images_loading.dart';
 import 'package:meme_cloud/custom_widgets/tag_carousel.dart';
@@ -47,52 +49,79 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  loadTiles(List<PhotoItem> photos) {
+    // var random = Random();
+    // int min = 2;
+    // int max = 5;
+
+    // print(result1);
+    // print(result2);
+    List<Widget> babyList = [];
+    for (var item in photos) {
+      babyList.add(GestureDetectorWidget(
+              firebaseCollection: firebaseCollection, item: item)
+
+          // GestureDetector(
+          //   onTap: () {
+          //     // showModalBottomSheet(
+          //     //     enableDrag: true,
+          //     //     backgroundColor: Colors.transparent,
+          //     //     isScrollControlled: true,
+          //     //     isDismissible: true,
+          //     //     shape: RoundedRectangleBorder(
+          //     //       borderRadius: BorderRadius.vertical(
+          //     //         top: Radius.circular(10),
+          //     //       ),
+          //     //     ),
+          //     //     context: context,
+          //     //     builder: (context) => PhotoPage(
+          //     //           firebaseCollection: firebaseCollection,
+          //     //           item: item,
+          //     //         ));
+          //     // showCupertinoModalPopup(
+          //     //     context: context,
+          //     //     builder: (context) => PhotoPage(
+          //     //           firebaseCollection: firebaseCollection,
+          //     //           item: item,
+          //     //           widgetA: widget,
+          //     //         ));
+          //     Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //             builder: (context) => PhotoPage(
+          //                   firebaseCollection: firebaseCollection,
+          //                   item: item,
+          //                   //widgetA: widget,
+          //                 )));
+          //   },
+          //   child: StaggeredGridTile.count(
+          //       crossAxisCellCount: 3, //min + random.nextInt(max - min),
+          //       mainAxisCellCount: 3, //min + random.nextInt(max - min),
+          //       child: ImageCard(item: item)
+          //       // Tile(
+          //       //   index: babyList.length,
+          //       //   photo: item,
+          //       // ),
+          //       ))
+          );
+    }
+
+    tileList = babyList;
+    return babyList;
+  }
+
+  List<Widget> getPhotos() {
+    DatabaseService(uid: user!.uid, firebaseCollection: firebaseCollection)
+        .getUserPosts()
+        .then((value) {
+      loadTiles(value);
+    });
+
+    return tileList;
+  }
+
   @override
   Widget build(BuildContext context) {
-    loadTiles(List<PhotoItem> photos) {
-      // var random = Random();
-      // int min = 2;
-      // int max = 5;
-
-      // print(result1);
-      // print(result2);
-      List<Widget> babyList = [];
-      for (var item in photos) {
-        babyList.add(GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PhotoPage(
-                            firebaseCollection: firebaseCollection,
-                            item: item,
-                          )));
-            },
-            child: StaggeredGridTile.count(
-                crossAxisCellCount: 3, //min + random.nextInt(max - min),
-                mainAxisCellCount: 3, //min + random.nextInt(max - min),
-                child: ImageCard(item: item)
-                // Tile(
-                //   index: babyList.length,
-                //   photo: item,
-                // ),
-                )));
-      }
-
-      tileList = babyList;
-      return babyList;
-    }
-
-    List<Widget> getPhotos() {
-      DatabaseService(uid: user!.uid, firebaseCollection: firebaseCollection)
-          .getUserPosts()
-          .then((value) {
-        loadTiles(value);
-      });
-
-      return tileList;
-    }
-
     // setState(() {
     //   DatabaseService(uid: user!.uid, firebaseCollection: firebaseCollection)
     //       .getUserPosts()
